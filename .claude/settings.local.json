@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/Morales/OneDrive/Desktop/GRUPO-M-T/front -not -path */node_modules/* -type f)"
+    ]
+  }
+}
