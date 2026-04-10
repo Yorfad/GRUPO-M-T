@@ -4,7 +4,6 @@ import { AboutSection } from '../sections/AboutSection'
 import { ServicesSection } from '../sections/ServicesSection'
 import { ProcessSection } from '../sections/ProcessSection'
 import { ChallengesSection } from '../sections/ChallengesSection'
-import { TestimonialsSection } from '../sections/TestimonialsSection'
 import { FAQSection } from '../sections/FAQSection'
 import { ContactSection } from '../sections/ContactSection'
 import { SITE_NAME, SITE_SUBTITLE, SITE_TAGLINE } from '../utils/constants'
@@ -22,7 +21,6 @@ export function Home() {
       <ServicesSection />
       <ProcessSection />
       <ChallengesSection />
-      <TestimonialsSection />
       <FAQSection />
       <ContactSection />
     </>
