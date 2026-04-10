@@ -28,9 +28,6 @@ export const SECTION_IDS = {
   services: 'servicios',
   process: 'proceso',
   challenges: 'desafios',
-  technologies: 'tecnologias',
-  portfolio: 'portafolio',
-  testimonials: 'testimonios',
   faq: 'faq',
   contact: 'contacto',
 }
