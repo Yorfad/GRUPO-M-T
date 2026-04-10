@@ -6,6 +6,12 @@ interface SectionTitleProps {
   className?: string
 }
 
+const alignClass = {
+  left: 'text-left',
+  center: 'text-center mx-auto',
+  right: 'text-right ml-auto',
+}
+
 export function SectionTitle({
   label,
   title,
@@ -14,10 +20,14 @@ export function SectionTitle({
   className = '',
 }: SectionTitleProps) {
   return (
-    <div className={`section-title section-title--${align} ${className}`}>
-      {label && <span className="section-title__label">{label}</span>}
-      <h2 className="section-title__heading">{title}</h2>
-      {subtitle && <p className="section-title__subtitle">{subtitle}</p>}
+    <div className={`mb-12 max-w-2xl ${alignClass[align]} ${className}`}>
+      {label && (
+        <span className="inline-block mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
+          {label}
+        </span>
+      )}
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">{title}</h2>
+      {subtitle && <p className="mt-4 text-lg text-gray-600">{subtitle}</p>}
     </div>
   )
 }

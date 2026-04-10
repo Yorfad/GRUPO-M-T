@@ -19,49 +19,84 @@ export function Navbar() {
   }, [])
 
   const handleNavClick = (href: string) => {
-    const id = href.replace('#', '')
-    scrollTo(id)
+    scrollTo(href.replace('#', ''))
     setIsMenuOpen(false)
   }
 
   return (
-    <header className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur shadow-sm' : 'bg-transparent'}`}>
       <Container>
-        <nav className="navbar__inner">
-          <button className="navbar__logo" onClick={() => scrollTo(SECTION_IDS.hero)}>
-            <span className="navbar__logo-name">{SITE_NAME}</span>
-            <span className="navbar__logo-sub">{SITE_SUBTITLE}</span>
+        <nav className="flex items-center justify-between h-18 py-4">
+          {/* Logo */}
+          <button
+            onClick={() => scrollTo(SECTION_IDS.hero)}
+            className="text-left focus:outline-none"
+          >
+            <span className="block font-bold text-lg text-gray-900 leading-tight">{SITE_NAME}</span>
+            <span className="block text-xs text-primary font-medium">{SITE_SUBTITLE}</span>
           </button>
 
-          <ul className={`navbar__links ${isMenuOpen ? 'navbar__links--open' : ''}`}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <button
-                  className={`navbar__link ${activeId === link.href.replace('#', '') ? 'navbar__link--active' : ''}`}
-                  onClick={() => handleNavClick(link.href)}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
+          {/* Links — desktop */}
+          <ul className="hidden lg:flex items-center gap-1">
+            {NAV_LINKS.map((link) => {
+              const id = link.href.replace('#', '')
+              return (
+                <li key={link.href}>
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className={`px-3 py-2 text-sm rounded-md transition-colors duration-150 ${
+                      activeId === id
+                        ? 'text-primary font-semibold'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              )
+            })}
           </ul>
 
-          <div className="navbar__actions">
-            <Button size="sm" onClick={() => scrollTo(SECTION_IDS.contact)}>
+          {/* CTA + hamburger */}
+          <div className="flex items-center gap-3">
+            <Button size="sm" onClick={() => scrollTo(SECTION_IDS.contact)} className="hidden sm:inline-flex">
               Contáctenos
             </Button>
             <button
-              className="navbar__menu-toggle"
               onClick={() => setIsMenuOpen((v) => !v)}
               aria-label="Menú"
               aria-expanded={isMenuOpen}
+              className="lg:hidden flex flex-col gap-1.5 p-2"
             >
-              <span />
-              <span />
-              <span />
+              <span className={`block w-6 h-0.5 bg-gray-700 transition-transform ${isMenuOpen ? 'translate-y-2 rotate-45' : ''}`} />
+              <span className={`block w-6 h-0.5 bg-gray-700 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-6 h-0.5 bg-gray-700 transition-transform ${isMenuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
             </button>
           </div>
         </nav>
+
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden border-t border-gray-100 py-4 bg-white">
+            <ul className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+              <li className="pt-2 px-4">
+                <Button fullWidth onClick={() => handleNavClick('#contacto')}>
+                  Contáctenos
+                </Button>
+              </li>
+            </ul>
+          </div>
+        )}
       </Container>
     </header>
   )

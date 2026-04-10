@@ -1,61 +1,27 @@
-@import './variables.css';
+@import "tailwindcss";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@theme {
+  --color-primary: #aa3bff;
+  --color-primary-hover: #9333ea;
+  --color-primary-light: #f3e8ff;
+
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --navbar-height: 72px;
 }
 
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
+/* Reset */
 body {
   font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--color-text-heading);
-  line-height: 1.2;
-}
-
-img, video {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul, ol {
-  list-style: none;
-}
-
+/* Estilos base para botones de nav (no son <a> sino <button>) */
 button {
   cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-#root {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
 }

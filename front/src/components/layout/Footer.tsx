@@ -9,24 +9,26 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="footer">
+    <footer className="bg-gray-900 text-gray-300">
       <Container>
-        <div className="footer__top">
-          <div className="footer__brand">
-            <span className="footer__logo">{SITE_NAME}</span>
-            <span className="footer__subtitle">{SITE_SUBTITLE}</span>
-            <p className="footer__slogan">"{company.slogan}"</p>
+        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Brand */}
+          <div>
+            <p className="font-bold text-white text-lg">{SITE_NAME}</p>
+            <p className="text-primary text-sm font-medium mb-3">{SITE_SUBTITLE}</p>
+            <p className="text-sm italic text-gray-400 mb-4">"{company.slogan}"</p>
             <SocialLinks />
           </div>
 
-          <nav className="footer__nav" aria-label="Footer navigation">
-            <h3 className="footer__nav-title">Navegación</h3>
-            <ul>
+          {/* Nav */}
+          <nav aria-label="Footer navigation">
+            <p className="font-semibold text-white mb-4">Navegación</p>
+            <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <button
-                    className="footer__nav-link"
                     onClick={() => scrollTo(link.href.replace('#', ''))}
+                    className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     {link.label}
                   </button>
@@ -35,18 +37,25 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="footer__contact">
-            <h3 className="footer__nav-title">Contacto</h3>
-            <ul>
+          {/* Contact */}
+          <div>
+            <p className="font-semibold text-white mb-4">Contacto</p>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <a href={`tel:${PHONE_PRIMARY.replace(/-/g, '')}`}>{PHONE_PRIMARY}</a>
+                <a href={`tel:${PHONE_PRIMARY.replace(/-/g, '')}`} className="hover:text-white transition-colors">
+                  {PHONE_PRIMARY}
+                </a>
               </li>
               <li>
-                <a href={`tel:${PHONE_SECONDARY.replace(/-/g, '')}`}>{PHONE_SECONDARY}</a>
+                <a href={`tel:${PHONE_SECONDARY.replace(/-/g, '')}`} className="hover:text-white transition-colors">
+                  {PHONE_SECONDARY}
+                </a>
               </li>
               {company.email && (
                 <li>
-                  <a href={`mailto:${company.email}`}>{company.email}</a>
+                  <a href={`mailto:${company.email}`} className="hover:text-white transition-colors">
+                    {company.email}
+                  </a>
                 </li>
               )}
               <li>{company.location}</li>
@@ -54,10 +63,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="footer__bottom">
-          <p>
-            &copy; {year} {SITE_NAME}. Todos los derechos reservados.
-          </p>
+        <div className="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+          &copy; {year} {SITE_NAME}. Todos los derechos reservados.
         </div>
       </Container>
     </footer>

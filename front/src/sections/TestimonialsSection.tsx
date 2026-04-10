@@ -1,47 +1,33 @@
 import { Container } from '../components/ui/Container'
 import { SectionTitle } from '../components/ui/SectionTitle'
-import { Card } from '../components/ui/Card'
 import { SECTION_IDS } from '../utils/constants'
 import { testimonials } from '../data/testimonials'
 
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="star-rating" aria-label={`${rating} de 5 estrellas`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <span key={i} className={`star ${i < rating ? 'star--filled' : ''}`}>
-          ★
-        </span>
-      ))}
-    </div>
-  )
-}
-
 export function TestimonialsSection() {
   return (
-    <section id={SECTION_IDS.testimonials} className="section testimonials">
+    <section id={SECTION_IDS.testimonials} className="py-20 bg-white">
       <Container>
         <SectionTitle
           label="Testimonios"
           title="Lo que dicen nuestros clientes"
           subtitle="La satisfacción de nuestros clientes es nuestro mayor logro."
         />
-        <div className="testimonials__grid">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {testimonials.map((t) => (
-            <Card key={t.id} className="testimonial-card">
-              <StarRating rating={t.rating} />
-              <blockquote className="testimonial-card__quote">"{t.content}"</blockquote>
-              <footer className="testimonial-card__footer">
-                {t.avatar && (
-                  <img src={t.avatar} alt={t.name} className="testimonial-card__avatar" />
-                )}
-                <div>
-                  <strong className="testimonial-card__name">{t.name}</strong>
-                  <span className="testimonial-card__role">
-                    {t.role} · {t.company}
-                  </span>
-                </div>
+            <div key={t.id} className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+              <div className="flex gap-1 mb-4">
+                {Array.from({ length: t.rating }, (_, i) => (
+                  <span key={i} className="text-yellow-400 text-lg">★</span>
+                ))}
+              </div>
+              <blockquote className="text-gray-700 italic leading-relaxed mb-6">
+                "{t.content}"
+              </blockquote>
+              <footer>
+                <p className="font-semibold text-gray-900">{t.name}</p>
+                <p className="text-sm text-gray-500">{t.role} · {t.company}</p>
               </footer>
-            </Card>
+            </div>
           ))}
         </div>
       </Container>
