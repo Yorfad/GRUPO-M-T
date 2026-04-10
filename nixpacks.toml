@@ -1,8 +1,0 @@
-[phases.install]
-cmds = ["npm --prefix front install"]
-
-[phases.build]
-cmds = ["npm --prefix front run build"]
-
-[start]
-cmd = "npx serve front/dist --single -l $PORT"

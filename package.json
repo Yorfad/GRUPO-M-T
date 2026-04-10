@@ -1,0 +1,9 @@
+{
+  "name": "grupo-mt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix front install && npm --prefix front run build",
+    "start": "npx serve front/dist --single -l $PORT"
+  }
+}
